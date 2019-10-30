@@ -36,7 +36,9 @@
         </ul>
         <ul class="navbar-nav">
         
-             @if (Auth::check())
+             
+      
+                 @if (Auth::user())
              <li class="nav-item"><a class="nav-link">{{Auth::user()->name}}</a></li>
                 <li class="nav-item">
                 <a class="nav-link" href="{{ url('/logout')}}">
@@ -52,6 +54,7 @@
                 <i class="fas fa-key"></i>
                  </a> </li>
             @endif
+            
 
         </ul>
       </div>
