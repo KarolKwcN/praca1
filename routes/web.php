@@ -23,4 +23,32 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+Route::get('admin', [
+    'uses' => 'Admin\AdminController@getAdminPage',
+    'as' => 'admin.admin',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
+
+
+Route::post('admin.admin.change', [
+    'uses' => 'Admin\AdminController@postAdminAssignRoles',
+    'as' => 'admin.assign.change',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
+
+Route::post('destroy_user', [
+    'uses' => 'Admin\AdminController@destroy',
+    'as' => 'admin.user.destroy',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
+
+Route::post('ban_user', [
+    'uses' => 'Admin\AdminController@ban',
+    'as' => 'admin.user.ban',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
 
