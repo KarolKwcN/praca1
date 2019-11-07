@@ -7,11 +7,12 @@
 
         <title>Laravel</title>
         <link rel="stylesheet" href="/css/app.css">
+       
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         
 
-
+        
         <script src="https://kit.fontawesome.com/4286317d70.js" crossorigin="anonymous"></script>  
     </head>
     <body>
@@ -89,7 +90,8 @@
     </div>
   </div>
       </div>
-
-      <script type="text/javascript" src="{{mix('js/app.js')}}"></script>
+      
+      <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+      <script type="text/javascript" src="{{mix('/js/app.js')}}"></script>
     </body>
 </html>
