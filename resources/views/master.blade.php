@@ -7,16 +7,15 @@
 
         <title>Laravel</title>
         <link rel="stylesheet" href="/css/app.css">
-       
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         
 
-        
+
         <script src="https://kit.fontawesome.com/4286317d70.js" crossorigin="anonymous"></script>  
     </head>
     <body>
-      <div id="app">
+    
       <nav class="navbar navbar-expand-md navbar-light" style="">
     <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar7">
         <span class="navbar-toggler-icon"></span>
@@ -89,9 +88,9 @@
       </div>
     </div>
   </div>
-      </div>
       
-      <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
-      <script type="text/javascript" src="{{mix('/js/app.js')}}"></script>
+
+      <script type="text/javascript" src="{{mix('js/app.js')}}"></script>
+
     </body>
 </html>

@@ -6,22 +6,10 @@ window.Vue = require('vue');
 
 
 
-//Vue.component('example', require('./components/ExampleComponent.vue').default);
-
-Vue.component('taskiii' , {
-
-    template: '<li>Foobar</li>'
-
-});
+Vue.component('example', require('./components/ExampleComponent.vue').default);
 
 
 
 const app = new Vue({
     el: '#app',
-
-    data: {
-
-        title: 'papapapapapaappa'
-    }
-    
 });

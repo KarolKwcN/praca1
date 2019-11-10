@@ -31,7 +31,7 @@ Route::get('admin', [
 ]);
 
 
-Route::post('admin.admin.change', [
+Route::post('assign_roles', [
     'uses' => 'Admin\AdminController@postAdminAssignRoles',
     'as' => 'admin.assign.change',
     'middleware' => 'roles',
@@ -52,3 +52,16 @@ Route::post('ban_user', [
     'roles' => ['Admin']
 ]);
 
+Route::post('odbanuj', [
+    'uses' => 'Admin\AdminController@odbanuj',
+    'as' => 'admin.user.odbanuj',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
+
+Route::get('admin_naprawy', [
+    'uses' => 'Admin\AdminController@getAdminNaprawyPage',
+    'as' => 'admin.admin_naprawy',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);

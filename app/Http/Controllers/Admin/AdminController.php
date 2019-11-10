@@ -59,7 +59,23 @@ class AdminController extends Controller
     return redirect()->back();
   }
 
+  public static function odbanuj(Request $request){
+    $user = User::where('id', $request['id'])->firstOrFail();
+    //dodawanie 14 dni bana
+    
+    
+    $user->banned_until=null;
+    $user->save();
 
+    
 
+    return redirect()->back();
+  }
+
+  public function getAdminNaprawyPage()
+  {
+    $users = User::all();
+    return view('admin.admin_naprawy', ['users' => $users]);
+  }
 
     }
