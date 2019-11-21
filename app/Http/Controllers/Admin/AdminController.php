@@ -79,4 +79,12 @@ class AdminController extends Controller
     return view('admin.admin_naprawy', ['categories' => $categories]);
   }
 
+  //dodawanie kategorii
+  public function dodaj_kategorie(Request $request)
+  {
+    Category::create($request->all());
+
+    return redirect()->back();
+  }
+
     }

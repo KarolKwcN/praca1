@@ -45,9 +45,9 @@
                                                 <td>{{ $user->email }} <input type="hidden" name="email" value="{{ $user->email }}"></td>
                                                     <td>
                                                             @if($user->banned_until)
-                                                            <button type="button" class="btn btn-warning" data-user_id="{{$user->id}}" data-toggle="modal" data-target="#bannie">Tak</button>
+                                                            <button type="button" class="btn btn-warning" data-userid={{$user->id}} data-toggle="modal" data-target="#bannie">Tak</button>
                                                                 @else
-                                                            <button type="button" class="btn btn-success" data-catid="{{$user->id}}" data-toggle="modal" data-target="#bantak">Nie</button>
+                                                            <button type="button" class="btn btn-success" data-userid={{$user->id}} data-toggle="modal" data-target="#bantak">Nie</button>
                                                             @endif 
                                                         </td>
                                                 
@@ -60,7 +60,7 @@
                                             </form>
                                             <td>
                                                     
-                                                        <button type="button" class="btn btn-danger" data-catid="{{$user->id}}" data-toggle="modal" data-target="#delete">Usuń użytkownika</button>
+                                                        <button type="button" class="btn btn-danger" data-userid={{$user->id}} data-toggle="modal" data-target="#delete">Usuń użytkownika</button>
                                                         
                                                       
                                                 </td>
@@ -93,7 +93,7 @@
                       <p class="text-center">
                           Napewno chcesz usunąć tego użytkownika?
                       </p>
-                      <input type="hidden" name="id" value="{{ $user->id }}">
+                      <input type="hidden" name="id" id="user_id" value="">
       
                 </div>
                 <div class="modal-footer">
@@ -121,7 +121,7 @@
                       <p class="text-center">
                           Napewno chcesz zbanować tego użytkownika?
                       </p>
-                      <input type="hidden" name="id" value="{{ $user->id }}">
+                      <input type="hidden" name="id" id="user_id" value="">
       
                 </div>
                 <div class="modal-footer">
@@ -149,7 +149,7 @@
                       <p class="text-center">
                           Napewno chcesz odbanować tego użytkownika?
                       </p>
-                      <input type="hidden" name="id" value="{{ $user->id }}">
+                      <input type="hidden" name="id" id="user_id" value="">
       
                 </div>
                 <div class="modal-footer">

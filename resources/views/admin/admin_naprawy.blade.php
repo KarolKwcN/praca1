@@ -21,7 +21,7 @@
           <div class="row">        
                   <div class="col-lg-12">
                     <div class="float-right">
-                      <button type="button" class="btn btn-success">Dodaj kategorię</button>
+                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#dodaj_kategorie">Dodaj kategorię</button>
                     </div>
                       <table class="table table-bordered table-striped">
                               <thead>
@@ -56,7 +56,31 @@
     
 </div>
 
-
+<div class="modal modal-danger fade" id="dodaj_kategorie" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         
+        </div>
+        <form action="{{route('admin.dodaj_kategorie')}}" method="post">
+            
+                @csrf
+            <div class="modal-body">
+              <div class="form-group">
+                  <label for="title">Nazwa kategorii</label>
+                  <input type="text" class="form-control" name="name" id="name">
+              </div>
+  
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-warning" data-dismiss="modal">Anuluj</button>
+              <button type="submit" class="btn btn-success">Dodaj</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
     
 
 @endsection

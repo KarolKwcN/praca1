@@ -92,5 +92,31 @@
 
       <script type="text/javascript" src="{{mix('js/app.js')}}"></script>
 
+      <script>
+  
+          $('#delete').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var user_id = button.data('userid') 
+              var modal = $(this)
+              modal.find('.modal-body #user_id').val(user_id);
+        })
+
+        $('#bantak').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var user_id = button.data('userid') 
+              var modal = $(this)
+              modal.find('.modal-body #user_id').val(user_id);
+        })
+
+        $('#bannie').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var user_id = button.data('userid') 
+              var modal = $(this)
+              modal.find('.modal-body #user_id').val(user_id);
+        })
+
+        </script>
+        
+
     </body>
 </html>

@@ -65,3 +65,11 @@ Route::get('admin_naprawy', [
     'middleware' => 'roles',
     'roles' => ['Admin']
 ]);
+
+
+Route::post('dodaj_kategorie', [
+    'uses' => 'Admin\AdminController@dodaj_kategorie',
+    'as' => 'admin.dodaj_kategorie',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
