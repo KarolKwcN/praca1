@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use App\Category;
 use DB;
 
 class AdminController extends Controller
@@ -74,8 +75,8 @@ class AdminController extends Controller
 
   public function getAdminNaprawyPage()
   {
-    $users = User::all();
-    return view('admin.admin_naprawy', ['users' => $users]);
+    $categories = Category::all();
+    return view('admin.admin_naprawy', ['categories' => $categories]);
   }
 
     }

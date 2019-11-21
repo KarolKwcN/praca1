@@ -17,7 +17,40 @@
           </ul>
         </div>
         <div class="card-body">
-              
+          <hr class="bg-info">
+          <div class="row">        
+                  <div class="col-lg-12">
+                    <div class="float-right">
+                      <button type="button" class="btn btn-success">Dodaj kategorię</button>
+                    </div>
+                      <table class="table table-bordered table-striped">
+                              <thead>
+                                  <tr class="text-center bg-info text-light">
+                                      <th>Lp.</th>
+                                      <th>Nazwa kategorii</th>
+                                      <th>Edytuj</th>
+                                      <th>Usuń</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <?php $i=1; ?>
+                                    @foreach($categories as $category)
+          
+                                      <tr class="text-center">
+                                          <td> {{$i++}}</td>
+                                          <td>{{ $category->name }}</td>
+                                          <td><button><i class="fas fa-edit"></i></button></td>
+                                          <td><button><i class="far fa-trash-alt"></i></button></td>
+                                  
+                                      </tr>
+          
+                                    @endforeach
+                              </tbody>
+          
+                      </table>
+          
+                  </div>
+              </div>
         </div>
       </div>
     
