@@ -73,3 +73,24 @@ Route::post('dodaj_kategorie', [
     'middleware' => 'roles',
     'roles' => ['Admin']
 ]);
+
+Route::post('usun_kategorie', [
+    'uses' => 'Admin\AdminController@usun_kategorie',
+    'as' => 'admin.usun_kategorie',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
+
+Route::post('edytuj_kategorie', [
+    'uses' => 'Admin\AdminController@edytuj_kategorie',
+    'as' => 'admin.edytuj_kategorie',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
+
+Route::get('/admin_naprawy/{id}', [
+    'uses' => 'Admin\AdminController@getAdminNaprawyMarkaPage',
+    'as' => 'admin.admin_naprawy_marka',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);

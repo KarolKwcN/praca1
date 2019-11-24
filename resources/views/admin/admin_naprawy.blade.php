@@ -17,6 +17,9 @@
           </ul>
         </div>
         <div class="card-body">
+            <div class="float-left">
+              <p>Kategorie</p>
+            </div><br>
           <hr class="bg-info">
           <div class="row">        
                   <div class="col-lg-12">
@@ -33,22 +36,22 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                  <?php $i=1; ?>
+                                  <?php $i=($categories->currentpage() - 1) * $categories->perpage()+1; ?>
                                     @foreach($categories as $category)
-          
                                       <tr class="text-center">
                                           <td> {{$i++}}</td>
-                                          <td>{{ $category->name }}</td>
-                                          <td><button><i class="fas fa-edit"></i></button></td>
-                                          <td><button><i class="far fa-trash-alt"></i></button></td>
-                                  
+                                          <td><a href="{{route('admin.admin_naprawy_marka', ['id' => $category->id])}}">{{ $category->name }}</a></td>
+                                      <td><button type="button" class="btn btn-info" data-name={{$category->name}} data-categoryid={{$category->id}} data-toggle="modal" data-target="#edytuj_kategorie"><i class="fas fa-edit"></i></button></td>
+                                          <td><button type="button" class="btn btn-danger" data-categoryid={{$category->id}} data-toggle="modal" data-target="#delete_category"><i class="far fa-trash-alt"></i></button></td>
                                       </tr>
           
                                     @endforeach
                               </tbody>
           
                       </table>
-          
+                    <div class="col-12 d-flex justify-content-center">
+                      {{$categories->links()}}
+                    </div>
                   </div>
               </div>
         </div>
@@ -77,6 +80,59 @@
               <button type="button" class="btn btn-warning" data-dismiss="modal">Anuluj</button>
               <button type="submit" class="btn btn-success">Dodaj</button>
             </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal modal-danger fade" id="delete_category" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           
+          </div>
+          <form action="{{route('admin.usun_kategorie')}}" method="post">
+              
+                  @csrf
+              <div class="modal-body">
+                    <p class="text-center">
+                        Napewno chcesz usunąć tą kategorię?
+                    </p>
+                    <input type="hidden" name="id" id="category_id" value="">
+    
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Nie, anuluj</button>
+                <button type="submit" class="btn btn-warning">Tak, Usuń</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal Edytuj kategorię-->
+<div class="modal fade" id="edytuj_kategorie" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Edytuj kategorię</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <form action="{{route('admin.edytuj_kategorie')}}" method="post">
+            @csrf
+          <div class="modal-body">
+              <input type="hidden" name="id" id="category_id" value="">
+              <div class="form-group">
+                  <label for="title">Nazwa kategorii</label>
+                  <input type="text" class="form-control" name="name" id="name">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+            <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+          </div>
         </form>
       </div>
     </div>

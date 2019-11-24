@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use App\Category;
+use App\Brand;
 use DB;
 
 class AdminController extends Controller
@@ -75,7 +76,7 @@ class AdminController extends Controller
 
   public function getAdminNaprawyPage()
   {
-    $categories = Category::all();
+    $categories = DB::table('categories')->paginate(10);
     return view('admin.admin_naprawy', ['categories' => $categories]);
   }
 
@@ -86,5 +87,33 @@ class AdminController extends Controller
 
     return redirect()->back();
   }
+
+  //usuwanie kategorii
+  public function usun_kategorie(Request $request)
+  {
+    $category = Category::where('id', $request['id'])->firstOrFail();
+    $category->delete();
+
+
+    return redirect()->back();
+  }
+
+  //edytuj kategorie
+  public function edytuj_kategorie(Request $request)
+  {
+    $category = Category::where('id', $request['id'])->firstOrFail();
+    $category->update($request->all());
+
+
+    return redirect()->back();
+  }
+
+  public function getAdminNaprawyMarkaPage(Request $request)
+  {
+    $brands = Brand::where('category_id', $request['id'])->get();
+    return view('admin.admin_naprawy_marka', ['brands' => $brands]);
+  }
+
+
 
     }

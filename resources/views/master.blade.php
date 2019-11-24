@@ -115,6 +115,23 @@
               modal.find('.modal-body #user_id').val(user_id);
         })
 
+        $('#delete_category').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var category_id = button.data('categoryid') 
+              var modal = $(this)
+              modal.find('.modal-body #category_id').val(category_id);
+        })
+
+        $('#edytuj_kategorie').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var name = button.data('name') 
+              var category_id = button.data('categoryid') 
+              var modal = $(this)
+              modal.find('.modal-body #name').val(name);
+              modal.find('.modal-body #category_id').val(category_id);
+              
+})
+
         </script>
         
 
