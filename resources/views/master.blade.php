@@ -130,7 +130,33 @@
               modal.find('.modal-body #name').val(name);
               modal.find('.modal-body #category_id').val(category_id);
               
-})
+          })
+          
+          $('#dodaj_marke').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var category_id = button.data('categoryid') 
+              var modal = $(this)
+              modal.find('.modal-body #category_id').val(category_id);
+        })
+
+        $('#edytuj_marke').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var name = button.data('name') 
+              var description = button.data('description') 
+              var brand_id = button.data('brandid') 
+              var modal = $(this)
+              modal.find('.modal-body #name').val(name);
+              modal.find('.modal-body #description').val(description);
+              modal.find('.modal-body #brand_id').val(brand_id);
+              
+          })
+
+          $('#delete_brand').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var brand_id = button.data('brandid') 
+              var modal = $(this)
+              modal.find('.modal-body #brand_id').val(brand_id);
+        })
 
         </script>
         

@@ -83,7 +83,10 @@ class AdminController extends Controller
   //dodawanie kategorii
   public function dodaj_kategorie(Request $request)
   {
-    Category::create($request->all());
+    $categories = New Category;
+    $categories->name = $request->name;
+    $categories->slug = str_slug($request->name);
+    $categories->save();
 
     return redirect()->back();
   }
@@ -101,19 +104,57 @@ class AdminController extends Controller
   //edytuj kategorie
   public function edytuj_kategorie(Request $request)
   {
+
+
     $category = Category::where('id', $request['id'])->firstOrFail();
-    $category->update($request->all());
+    $category->name = $request->name;
+    $category->slug = str_slug($request->name);
+    $category->update();
 
 
     return redirect()->back();
   }
 
-  public function getAdminNaprawyMarkaPage(Request $request)
+  public function getAdminNaprawyMarkaPage($slug)
   {
-    $brands = Brand::where('category_id', $request['id'])->get();
-    return view('admin.admin_naprawy_marka', ['brands' => $brands]);
+    $category = Category::where('slug', $slug)->first();
+    $brands = Brand::where('category_id', $category->id)->get();
+    return view('admin.admin_naprawy_marka', compact('brands','category'));
   }
 
 
+  public function dodaj_marke(Request $request)
+  {
+    $brands = New Brand;
+    $brands->name = $request->name;
+    $brands->description = $request->description;
+    $brands->slug = str_slug($request->name);
+    $brands->category_id = $request['id'];
+    $brands->save();
+    
 
-    }
+    return redirect()->back();
+  }
+
+  public function edytuj_marke(Request $request)
+  {
+    $brand = Brand::where('id', $request['id'])->firstOrFail();
+    $brand->name = $request->name;
+    $brand->description = $request->description;
+    $brand->slug = str_slug($request->name);
+    $brand->update();
+
+
+    return redirect()->back();
+  }
+
+  public function delete_brand(Request $request)
+  {
+    $brand = Brand::where('id', $request['id'])->firstOrFail();
+    $brand->delete();
+
+
+    return redirect()->back();
+  }
+
+  }

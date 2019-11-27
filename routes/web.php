@@ -88,9 +88,31 @@ Route::post('edytuj_kategorie', [
     'roles' => ['Admin']
 ]);
 
-Route::get('/admin_naprawy/{id}', [
+Route::get('/admin_naprawy/{slug}', [
     'uses' => 'Admin\AdminController@getAdminNaprawyMarkaPage',
     'as' => 'admin.admin_naprawy_marka',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
+
+
+Route::post('dodaj_marke', [
+    'uses' => 'Admin\AdminController@dodaj_marke',
+    'as' => 'admin.dodaj_marke',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
+
+Route::post('edytuj_marke', [
+    'uses' => 'Admin\AdminController@edytuj_marke',
+    'as' => 'admin.edytuj_marke',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
+
+Route::post('delete_brand', [
+    'uses' => 'Admin\AdminController@delete_brand',
+    'as' => 'admin.delete_brand',
     'middleware' => 'roles',
     'roles' => ['Admin']
 ]);

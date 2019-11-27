@@ -18,7 +18,7 @@
         </div>
         <div class="card-body">
             <div class="float-left">
-              <p>Kategorie</p>
+                <a class="text-reset" href="{{route('admin.admin_naprawy')}}">Kategorie</a>
             </div><br>
           <hr class="bg-info">
           <div class="row">        
@@ -40,8 +40,8 @@
                                     @foreach($categories as $category)
                                       <tr class="text-center">
                                           <td> {{$i++}}</td>
-                                          <td><a href="{{route('admin.admin_naprawy_marka', ['id' => $category->id])}}">{{ $category->name }}</a></td>
-                                      <td><button type="button" class="btn btn-info" data-name={{$category->name}} data-categoryid={{$category->id}} data-toggle="modal" data-target="#edytuj_kategorie"><i class="fas fa-edit"></i></button></td>
+                                          <td><a href="{{route('admin.admin_naprawy_marka', $category->slug)}}">{{ $category->name }}</a></td>
+                                      <td><button type="button" class="btn btn-info" data-name="{{$category->name}}" data-categoryid={{$category->id}} data-toggle="modal" data-target="#edytuj_kategorie"><i class="fas fa-edit"></i></button></td>
                                           <td><button type="button" class="btn btn-danger" data-categoryid={{$category->id}} data-toggle="modal" data-target="#delete_category"><i class="far fa-trash-alt"></i></button></td>
                                       </tr>
           
