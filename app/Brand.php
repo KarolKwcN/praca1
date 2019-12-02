@@ -15,4 +15,9 @@ class Brand extends Model
         return $this->belongsTo(Category::class);
         
     }
+
+    public function devices()
+    {
+        return $this->hasMany(Device::class);
+    }
 }

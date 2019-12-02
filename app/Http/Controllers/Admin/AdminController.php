@@ -8,6 +8,7 @@ use App\User;
 use App\Role;
 use App\Category;
 use App\Brand;
+use App\Device;
 use DB;
 
 class AdminController extends Controller
@@ -118,7 +119,7 @@ class AdminController extends Controller
   public function getAdminNaprawyMarkaPage($slug)
   {
     $category = Category::where('slug', $slug)->first();
-    $brands = Brand::where('category_id', $category->id)->get();
+    $brands = Brand::where('category_id', $category->id)->paginate(10);
     return view('admin.admin_naprawy_marka', compact('brands','category'));
   }
 
@@ -128,7 +129,7 @@ class AdminController extends Controller
     $brands = New Brand;
     $brands->name = $request->name;
     $brands->description = $request->description;
-    $brands->slug = str_slug($request->name);
+    $brands->slugi = str_slug($request->name);
     $brands->category_id = $request['id'];
     $brands->save();
     
@@ -141,7 +142,7 @@ class AdminController extends Controller
     $brand = Brand::where('id', $request['id'])->firstOrFail();
     $brand->name = $request->name;
     $brand->description = $request->description;
-    $brand->slug = str_slug($request->name);
+    $brand->slugi = str_slug($request->name);
     $brand->update();
 
 
@@ -153,8 +154,51 @@ class AdminController extends Controller
     $brand = Brand::where('id', $request['id'])->firstOrFail();
     $brand->delete();
 
+    return redirect()->back();
+  }
+
+  public function getAdminNaprawyModelPage($slugi)
+  {
+    $brand = Brand::where('slugi', $slugi)->first();
+    $category = Category::where('id',$brand->category_id)->first();
+    $devices = Device::where('brand_id', $brand->id)->paginate(10);
+    return view('admin.admin_naprawy_model', compact('devices','brand','category'));
+  }
+
+
+  public function dodaj_model(Request $request)
+  {
+    $device = New Device;
+    $device->name = $request->name;
+    $device->description = $request->description;
+    $device->slugii = str_slug($request->name);
+    $device->brand_id = $request['id'];
+    $device->save();
+    
 
     return redirect()->back();
   }
+
+  public function edytuj_model(Request $request)
+  {
+    $device = Device::where('id', $request['id'])->firstOrFail();
+    $device->name = $request->name;
+    $device->description = $request->description;
+    $device->slugii = str_slug($request->name);
+    $device->update();
+
+
+    return redirect()->back();
+  }
+
+  public function delete_device(Request $request)
+  {
+    $device = Device::where('id', $request['id'])->firstOrFail();
+    $device->delete();
+
+    return redirect()->back();
+  }
+
+
 
   }

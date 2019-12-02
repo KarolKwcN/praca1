@@ -40,7 +40,10 @@
              <li class="nav-item"><a class="nav-link">{{Auth::user()->name}}</a></li>
                 <li class="nav-item">
                 <a class="nav-link" href="{{ url('/logout')}}">
-                <i class="fas fa-user"></i></a></li>
+                  <i class="fas fa-envelope"></i></a></li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/logout')}}">
+                  <i class="fas fa-user"></i></a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ url('/logout')}}">
                 <i class="fas fa-sign-out-alt"></i>
                 </a> </li>
@@ -156,6 +159,33 @@
               var brand_id = button.data('brandid') 
               var modal = $(this)
               modal.find('.modal-body #brand_id').val(brand_id);
+        })
+
+
+        $('#dodaj_model').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var brand_id = button.data('brandid') 
+              var modal = $(this)
+              modal.find('.modal-body #brand_id').val(brand_id);
+        })
+
+        $('#edytuj_model').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var name = button.data('name') 
+              var description = button.data('description') 
+              var device_id = button.data('deviceid') 
+              var modal = $(this)
+              modal.find('.modal-body #name').val(name);
+              modal.find('.modal-body #description').val(description);
+              modal.find('.modal-body #device_id').val(device_id);
+              
+          })
+
+          $('#delete_device').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var device_id = button.data('deviceid') 
+              var modal = $(this)
+              modal.find('.modal-body #device_id').val(device_id);
         })
 
         </script>

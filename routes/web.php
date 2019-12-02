@@ -116,3 +116,32 @@ Route::post('delete_brand', [
     'middleware' => 'roles',
     'roles' => ['Admin']
 ]);
+
+
+Route::get('/admin_naprawyy/{slugi}', [
+    'uses' => 'Admin\AdminController@getAdminNaprawyModelPage',
+    'as' => 'admin.admin_naprawy_model',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
+
+Route::post('dodaj_model', [
+    'uses' => 'Admin\AdminController@dodaj_model',
+    'as' => 'admin.dodaj_model',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
+
+Route::post('edytuj_model', [
+    'uses' => 'Admin\AdminController@edytuj_model',
+    'as' => 'admin.edytuj_model',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
+
+Route::post('delete_device', [
+    'uses' => 'Admin\AdminController@delete_device',
+    'as' => 'admin.delete_device',
+    'middleware' => 'roles',
+    'roles' => ['Admin']
+]);
