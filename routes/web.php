@@ -145,3 +145,8 @@ Route::post('delete_device', [
     'middleware' => 'roles',
     'roles' => ['Admin']
 ]);
+
+Route::get('message', 'MessageController@index')->name('index')->middleware('verified');
+Route::get('messages', 'MessageController@fetchMessages');
+Route::post('messages', 'MessageController@sendMessages');
+

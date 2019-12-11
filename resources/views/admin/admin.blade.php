@@ -16,6 +16,9 @@
             </li>
           </ul>
         </div>
+        <div id="app">
+          <chat></chat>
+        </div>
         <div class="card-body">
                 <hr class="bg-info">
                 <div class="row">

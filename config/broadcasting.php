@@ -27,16 +27,17 @@ return [
     | each available type of connection are provided inside this array.
     |
     */
-
+    
+  
     'connections' => [
 
         'pusher' => [
             'driver' => 'pusher',
-            'key' => env('PUSHER_APP_KEY'),
-            'secret' => env('PUSHER_APP_SECRET'),
-            'app_id' => env('PUSHER_APP_ID'),
+            'key' => env('915905'),
+            'secret' => env('576e227858374fe3403b'),
+            'app_id' => env('64cf0b405c970aa17105'),
             'options' => [
-                'cluster' => env('PUSHER_APP_CLUSTER'),
+                'cluster' => env('eu'),
                 'useTLS' => true,
             ],
         ],
