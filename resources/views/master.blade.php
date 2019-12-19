@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
         <title>Laravel</title>
-        <link rel="stylesheet" href="/css/app.css">
+        <link href="{{asset('css/app.css')}}" rel="stylesheet">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         
@@ -39,7 +39,7 @@
              @if (Auth::check())
              <li class="nav-item"><a class="nav-link">{{Auth::user()->name}}</a></li>
                 <li class="nav-item">
-                <a class="nav-link" href="{{ url('/logout')}}">
+                <a class="nav-link" href="{{ url('/wiadomosci')}}">
                   <i class="fas fa-envelope"></i></a></li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url('/logout')}}">

@@ -145,3 +145,40 @@ Route::post('delete_device', [
     'middleware' => 'roles',
     'roles' => ['Admin']
 ]);
+
+//wiaodmosci
+Route::get('/wiadomosci', function(){
+    return view('messages');
+})->middleware('verified');
+
+Route::get('/getMessages', function(){
+    $allUsers1 = DB::table('users')
+    ->Join('conversation','users.id','conversation.user_one')
+    ->where('conversation.user_two',Auth::user()->id)->get();
+    //return $allUsers1;
+
+    $allUsers2 = DB::table('users')
+    ->Join('conversation','users.id','conversation.user_two')
+    ->where('conversation.user_one',Auth::user()->id)->get();
+    return array_merge($allUsers1->toArray(), $allUsers2->toArray());
+})->middleware('verified');
+
+Route::get('/getMessages/{id}', function($id){
+    /*$checkCon = DB::table('conversation')->where('user_one', Auth::user()->id)
+    ->where('user_two', $id)->get();
+    if(count($checkCon)!=0){
+        //echo $checkCon[0]->id;
+        $userMsg = DB::table('messages')->where('messages.conversation_id', $checkCon[0]->id)->get();
+        return $userMsg;
+    }else{
+        echo "no messages";
+    }*/
+
+    $userMsg = DB::table('messages')
+    ->join('users','users.id','messages.user_from')
+    ->where('messages.conversation_id', $id)->get();
+        return $userMsg;
+
+})->middleware('verified');
+
+Route::post('/sendMessage', 'MessageController@sendMessage')->middleware('verified');
