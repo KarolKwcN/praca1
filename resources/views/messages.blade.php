@@ -7,6 +7,8 @@
             <div style="background-color:#fff; margin-right:10px; solid #F5F8FA" class="col-md-3 pull-left">
                 <h3 align="center">Użytkownicy</h3>
                 <hr>
+                <a href="{{url('/nowawiadomosc')}}">
+                     Nowa wiadomość</a>
                 <ul v-for="privateMsg in privateMsgs">
                 <li @click="messages(privateMsg.id)" style="list-style: none; margin-top:10px; background-color:#ddd">@{{privateMsg.name}}</li>
                 </ul>

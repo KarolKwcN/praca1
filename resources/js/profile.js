@@ -7,8 +7,12 @@ const app = new Vue({
    content: '',
    privateMsgs: [],
    singleMsgs: [],
+   users: [],
    msgFrom:'',
    conID: '',
+   user_id: '',
+   seen: false,
+   newMsgFrom: ''
 
  
 
@@ -23,7 +27,8 @@ const app = new Vue({
    axios.get('/getMessages')
         .then(response => {
           console.log(response.data); // show if success
-          app.privateMsgs = response.data; //we are putting data into our posts array
+          app.privateMsgs = response.data;
+          //app.users = response.data;  //we are putting data into our posts array
         })
         .catch(function (error) {
           console.log(error); // run if we have error
@@ -68,14 +73,29 @@ const app = new Vue({
             .catch(function (error) {
               console.log(error); // run if we have error
             });
-
      }
    },
+   userID: function(id){
+    app.user_id = id;
+  },
 
-  
- 
+  sendNewMsg(){
+    axios.post('/sendNewMessage', {
+      user_id: this.user_id,
+           msg: this.newMsgFrom,
+         })
+         .then(function (response) {
+           console.log(response.data); // show if success
+           if(response.status===200){
+             window.location.replace('/wiadomosci');
+             app.msg = 'your message has been sent successfully';
+           }
+
+         })
+         .catch(function (error) {
+           console.log(error); // run if we have error
+         });
+  }
    }
-
- 
 
 });

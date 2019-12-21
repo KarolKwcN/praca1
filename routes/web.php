@@ -151,7 +151,15 @@ Route::get('/wiadomosci', function(){
     return view('messages');
 })->middleware('verified');
 
+Route::get('/nowawiadomosc', function(){
+    return view('newmessages');
+})->middleware('verified');
+
+Route::get('/nowawiadomosc','MessageController@newMessage')->middleware('verified');
+
 Route::get('/getMessages', function(){
+  
+
     $allUsers1 = DB::table('users')
     ->Join('conversation','users.id','conversation.user_one')
     ->where('conversation.user_two',Auth::user()->id)->get();
@@ -182,3 +190,4 @@ Route::get('/getMessages/{id}', function($id){
 })->middleware('verified');
 
 Route::post('/sendMessage', 'MessageController@sendMessage')->middleware('verified');
+Route::post('sendNewMessage', 'MessageController@sendNewMessage');
