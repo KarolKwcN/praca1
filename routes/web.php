@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
@@ -147,9 +147,10 @@ Route::post('delete_device', [
 ]);
 
 //wiaodmosci
-Route::get('/wiadomosci', function(){
-    return view('messages');
-})->middleware('verified');
+
+
+Route::get('/wiadomosci', 'MessageController@index')->name('messages')->middleware('verified');
+
 
 Route::get('/nowawiadomosc', function(){
     return view('newmessages');
@@ -160,12 +161,12 @@ Route::get('/nowawiadomosc','MessageController@newMessage')->middleware('verifie
 Route::get('/getMessages', function(){
   
 
-    $allUsers1 = DB::table('users')
+    $allUsers1 = App\User::with('roles')
     ->Join('conversation','users.id','conversation.user_one')
     ->where('conversation.user_two',Auth::user()->id)->get();
     //return $allUsers1;
 
-    $allUsers2 = DB::table('users')
+    $allUsers2 =  App\User::with('roles')
     ->Join('conversation','users.id','conversation.user_two')
     ->where('conversation.user_one',Auth::user()->id)->get();
     return array_merge($allUsers1->toArray(), $allUsers2->toArray());
@@ -191,3 +192,18 @@ Route::get('/getMessages/{id}', function($id){
 
 Route::post('/sendMessage', 'MessageController@sendMessage')->middleware('verified');
 Route::post('sendNewMessage', 'MessageController@sendNewMessage');
+
+Route::get('/naprawy', function(){
+        $categories = App\Category::all();
+    	return view('naprawy.naprawy', ['categories' => $categories]);
+});
+
+Route::get('/naprawy/{slug}', function($slug){
+        
+  $category = App\Category::where('slug', $slug)->first();
+  $brands = App\Brand::where('category_id', $category->id)->paginate(10);
+  
+  return view('naprawy.naprawy_marka', compact('brands','category'));
+
+});
+

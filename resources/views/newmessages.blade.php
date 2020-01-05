@@ -14,11 +14,12 @@
             </div>
         
             <div style="background-color:#fff; min-height:600px; margin-right:10px; solid #F5F8FA" class="col-md-6">
-                    <h3 align="center">Wiadomości</h3>
+                    <h3 align="center">Wiadomość</h3>
+                    <hr>
                     <div  v-if="seen">
                         <input type="hidden" v-model="user_id">
                         <textarea class="col-md-12 form-control" v-model="newMsgFrom"></textarea><br>
-                        <input type="button" value="send message" @click="sendNewMsg()">
+                        <input type="button" value="Wyślij wiadomość" @click="sendNewMsg()">
                     </div>
                     
             </div>

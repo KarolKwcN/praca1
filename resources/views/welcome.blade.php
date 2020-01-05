@@ -25,7 +25,7 @@
           <b>DOMOWY SERWIS</b>
         </a>
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item"> <a class="nav-link" href="#">Naprawy</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="{{url('/naprawy')}}">Naprawy</a> </li>
           <li class="nav-item"> <a class="nav-link" href="#">O nas</a> </li>
           <li class="nav-item"> <a class="nav-link" href="#">Kontakt</a> </li>
           @if(Auth::check())

@@ -9,9 +9,21 @@ use Illuminate\Support\Facades\DB;
 use App\friendships;
 use App\notifcations;
 use App\User;
+use App\Role;
 
 class MessageController extends Controller
+
 {
+
+  public function index()
+  {
+
+    	return view('messages');
+    
+  }
+
+
+  
     public function sendMessage(Request $request){
         $conID = $request->conID;
         $msg = $request->msg;

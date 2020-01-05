@@ -20,12 +20,12 @@
     <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar7">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbar7"> <a class="navbar-brand text-primary d-none d-md-block" href="{{url('/home')}}">
+      <div class="collapse navbar-collapse" id="navbar7"> <a class="navbar-brand text-primary d-none d-md-block" href="{{url('/')}}">
           <i class="fas fa-screwdriver"></i>
           <b>DOMOWY SERWIS</b>
         </a>
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item"> <a class="nav-link" href="#">Naprawy</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{url('/naprawy')}}">Naprawy</a> </li>
           <li class="nav-item"> <a class="nav-link" href="#">O nas</a> </li>
           <li class="nav-item"> <a class="nav-link" href="#">Kontakt</a> </li>
           @if(Auth::check())

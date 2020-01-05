@@ -8,9 +8,26 @@
                 <h3 align="center">Użytkownicy</h3>
                 <hr>
                 <a href="{{url('/nowawiadomosc')}}">
+                   
                      Nowa wiadomość</a>
-                <ul v-for="privateMsg in privateMsgs">
-                <li @click="messages(privateMsg.id)" style="list-style: none; margin-top:10px; background-color:#ddd">@{{privateMsg.name}}</li>
+                <ul style="padding-inline-start: 2px;" v-for="privateMsg in privateMsgs">
+                <li @click="messages(privateMsg.id)"
+                 style="list-style: none; display: flex; flex: 1 1 auto;
+                 flex-direction: column; margin-top:10px; justify-content: center;
+                 border-radius: 10px; min-width: 0; padding-left: 8px; padding-right: 8px;
+                  background-color:#F2F2F2 ;cursor: pointer;">
+                  <div style="font-size: 15px; font-weight: 400; line-height: 1.4;">@{{privateMsg.name}}</div>
+                  <div style="color: rgba(153, 153, 153, 1); font-size: 13px;">Pozycja: 
+                    
+                        <a v-for="role in privateMsg.roles">
+                            @{{role.name}} /  
+                        </a>
+                    
+                
+                </div>
+                  
+                </li>
+                
                 </ul>
                     <hr>
             </div>
