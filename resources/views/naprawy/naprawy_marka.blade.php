@@ -16,10 +16,13 @@
           
 
           <div class="row">
-            <div class="col-3 col-md-12 p-2 border" style=""> <img class="d-block img-fluid" src="https://static.pingendo.com/img-placeholder-4.svg" style="">
+            <div class="col-3 col-md-12 p-2 border" style=""> 
+                <a href="{{url('/naprawyy', $brand->slugi)}}">
+                <img class="d-block img-fluid" src="https://static.pingendo.com/img-placeholder-4.svg" style="">
               <div class="col-9 col-md-12">
                 <p class="lead mb-1"> <b>{{$brand->name}}</b> </p>
               </div>
+            </a>
             </div>
           </div>
 

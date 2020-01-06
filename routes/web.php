@@ -207,3 +207,18 @@ Route::get('/naprawy/{slug}', function($slug){
 
 });
 
+Route::get('/naprawyy/{slugi}', function($slugi){
+        
+    $brand = App\Brand::where('slugi', $slugi)->first();
+    $category = App\Category::where('id',$brand->category_id)->first();
+    $devices = App\Device::where('brand_id', $brand->id)->paginate(10);
+    return view('naprawy.naprawy_model', compact('devices','brand','category'));
+  
+  });
+  
+  Route::get('serwisant', [
+    'uses' => 'SerwisantController@index',
+    'as' => 'serwisant.serwisant',
+    'middleware' => 'roles',
+    'roles' => ['Serwisant']
+]);

@@ -32,6 +32,9 @@
           @if(Auth::user()->hasRole('Admin'))
             <li class="nav-item"> <a class="nav-link" href="{{route('admin.admin')}}">Panel admina</a> </li>
             @endif
+            @if(Auth::user()->hasRole('Serwisant'))
+            <li class="nav-item"> <a class="nav-link" href="{{route('serwisant.serwisant')}}">Panel serwisanta</a> </li>
+            @endif
             @endif
         </ul>
         <ul class="navbar-nav">
