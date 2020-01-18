@@ -222,3 +222,47 @@ Route::get('/naprawyy/{slugi}', function($slugi){
     'middleware' => 'roles',
     'roles' => ['Serwisant']
 ]);
+
+
+Route::get('/serwisant/{slug}', [
+    'uses' => 'SerwisantController@getSerwisantNaprawyMarkaPage',
+    'as' => 'serwisant.serwisant_naprawy_marka',
+    'middleware' => 'roles',
+    'roles' => ['Serwisant']
+]);
+
+Route::get('/serwisantt/{slugi}', [
+    'uses' => 'SerwisantController@getSerwisantNaprawyModelPage',
+    'as' => 'serwisant.serwisant_naprawy_model',
+    'middleware' => 'roles',
+    'roles' => ['Serwisant']
+]);
+
+Route::get('/serwisaant/{slugii}', [
+    'uses' => 'SerwisantController@getSerwisantUrzadzenie',
+    'as' => 'serwisant.serwisant_urzadzenie',
+    'middleware' => 'roles',
+    'roles' => ['Serwisant']
+]);
+
+Route::get('/serwisant/nowa_naprawa_1/{slugii}', [
+    'uses' => 'SerwisantController@getSerwisantTworzenieNaprawy',
+    'as' => 'serwisant.serwisant_tworzenie_naprawy',
+    'middleware' => 'roles',
+    'roles' => ['Serwisant']
+]);
+
+Route::post('/serwisant/nowa_naprawa_1/{slugii}', [
+    'uses' => 'SerwisantController@postSerwisantTworzenieNaprawy',
+    'as' => 'serwisant.serwisant_tworzenie_naprawy',
+    'middleware' => 'roles',
+    'roles' => ['Serwisant']
+]);
+
+
+
+
+
+Route::get('/sserwisant/nowa_naprawa_2', 'SerwisantController@getSerwisantTworzenieNaprawy2');
+
+
