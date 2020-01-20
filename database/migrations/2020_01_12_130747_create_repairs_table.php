@@ -21,6 +21,7 @@ class CreateRepairsTable extends Migration
             $table->mediumText('image')->nullable();
             $table->integer('device_id');
             $table->integer('user_id');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

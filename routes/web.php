@@ -260,9 +260,14 @@ Route::post('/serwisant/nowa_naprawa_1/{slugii}', [
 ]);
 
 
+Route::get('/sserwisant/nowa_naprawa_2', [
+    'uses' => 'SerwisantController@getSerwisantTworzenieNaprawy2',
+    
+    'middleware' => 'roles',
+    'roles' => ['Serwisant']
+]);
 
 
-
-Route::get('/sserwisant/nowa_naprawa_2', 'SerwisantController@getSerwisantTworzenieNaprawy2');
+//Route::get('/sserwisant/nowa_naprawa_2', 'SerwisantController@getSerwisantTworzenieNaprawy2');
 
 

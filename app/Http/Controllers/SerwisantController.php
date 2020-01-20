@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
 
+use Session;
 use App\User;
 use App\Role;
 use App\Category;
@@ -58,6 +60,7 @@ class SerwisantController extends Controller
     {
 
         $device = Device::where('slugii', $slugii)->first();
+        $deviceName = Session::put('deviceName', $device->name);
         $validatedData = $request->validate([
             'name' => 'required|unique:repairs',
             'description' => 'required',
@@ -68,10 +71,12 @@ class SerwisantController extends Controller
 
         $image = $request->file('zdj');
 
-     $new_name = rand() . '.' . $image->getClientOriginalExtension();
+     $new_name = rand() . time() . '.' .  $image->getClientOriginalExtension();
 
-     $image->move(public_path('images'), $new_name);
-     //return back()->with('success', 'Image Uploaded Successfully')->with('path', $new_name);
+     $image->move(public_path('images/'.$device->name.'/'.$request->name), $new_name);
+     
+
+     $imageName = Session::put('imageName', $new_name);
     
 
         if(empty($request->session()->get('repair'))){
@@ -97,7 +102,9 @@ class SerwisantController extends Controller
     public function getSerwisantTworzenieNaprawy2(Request $request)
     {
         $repair = $request->session()->get('repair');
-        return view('serwisant.serwisant_tworzenie_naprawy2',compact('repair', $repair));
+        $deviceName = $request->session()->get('deviceName');
+        $imageName = $request->session()->get('imageName');
+        return view('serwisant.serwisant_tworzenie_naprawy2',compact('repair', $repair, 'deviceName','imageName'));
         
     }
 

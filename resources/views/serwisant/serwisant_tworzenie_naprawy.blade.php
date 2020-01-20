@@ -7,7 +7,7 @@
     <fieldset>
     
     <!-- Form Name -->
-    <legend>Tworzenie naprawy dla {{$device->name}}</legend>
+    <legend>Tworzenie naprawy dla {{$device->name}} (Etap 1/3)</legend>
     
     <!-- Text input-->
     <div class="form-group">
